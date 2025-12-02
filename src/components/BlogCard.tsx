@@ -8,27 +8,14 @@ import {
 } from "./ui/card";
 import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
+import { Post } from "@/types";
 
 interface BlogCardProps {
-  title: string;
-  slug: string;
-  excerpt: string;
-  mainImage: {
-    asset: {
-      _ref: string;
-      _type: string;
-    };
-  };
-  publishedAt?: string;
+  post: Post;
 }
 
-export default function BlogCard({
-  title,
-  slug,
-  excerpt,
-  publishedAt,
-  mainImage,
-}: BlogCardProps) {
+export default function BlogCard({ post }: BlogCardProps) {
+  const { slug, title, publishedAt, mainImage, excerpt } = post;
   return (
     <>
       <Link href={`/blogs/${slug}`} className="group">

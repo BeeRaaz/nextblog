@@ -3,9 +3,7 @@ import { PortableTextBlock } from "sanity";
 export interface Post {
   _id: string;
   title: string;
-  slug: {
-    current: string;
-  };
+  slug: string;
   mainImage: {
     asset: {
       _ref: string;
@@ -23,9 +21,7 @@ export interface Post {
 export interface Author {
   _id: string;
   name: string;
-  slug?: {
-    current: string;
-  };
+  slug: string;
   picture?: {
     asset: {
       _ref: string;
@@ -38,15 +34,11 @@ export interface Author {
 export interface Category {
   _id: string;
   title: string;
-  slug?: {
-    current: string;
-  };
+  slug?: string;
 }
 
 export interface Tag {
   _id: string;
   title: string;
-  slug?: {
-    current: string;
-  };
+  slug?: string;
 }

@@ -1,6 +1,6 @@
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
-import { client } from "@/sanity/lib/client";
+import { fetchSanity } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
 import { singlePostQuery } from "@/sanity/lib/queries";
 import { Post } from "@/types";
@@ -15,9 +15,11 @@ interface BlogSingleProps {
 export default async function BlogSingle({ params }: BlogSingleProps) {
   const { slug } = await params;
 
-  const post = await client.fetch<Post | null>(singlePostQuery, {
-    slug,
-  });
+  const post: Post = await fetchSanity(
+    singlePostQuery,
+    { slug },
+    { revalidate: 60, tags: [`post-${slug}`] },
+  );
 
   if (!post) {
     return (
